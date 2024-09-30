@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+      .container {
+        max-width: 400px;
+        margin-top: 50px;
+      }
+      .alert {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="text-center mb-4">Login</h2>
+      <form class="form" action="/login" method="post">
+        <!-- Display error messages -->
+        <% if (credintialsMissing) { %>
+        <div class="alert alert-danger text-center">
+          Please fill in both fields
+        </div>
+        <% } %>
+        <% if (InvalidCredintials) { %>
+        <div class="alert alert-danger text-center">
+          Invalid credentials, please try again
+        </div>
+        <% } %>
+
+        <!-- Email input -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" />
+        </div>
+
+        <!-- Password input -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" />
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+
+        <!-- Register link -->
+        <div class="text-center mt-3">
+          <a href="/signup" class="text-decoration-none">Don't have an account?</a>
+        </div>
+      </form>
+      <div class="form-group mt-3">
+        <p>Or <a href="/admin-login" id="adminLoginLink">Login as Admin</a></p>
+    </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3

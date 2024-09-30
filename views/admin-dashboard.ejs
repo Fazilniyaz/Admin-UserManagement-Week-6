@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2>Admin Dashboard</h2>
+
+      <!-- Create User Button -->
+      <a href="/create-user" class="btn btn-success mb-3">Create User</a>
+
+      <!-- Search form -->
+      <form class="mb-3" action="/admin-dashboard" method="get">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            name="search"
+            placeholder="Search by name or email"
+            value="<%= searchQuery || '' %>"
+          />
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+      </form>
+
+      <!-- Users Table -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+            <!-- Added this column for actions -->
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(user => { %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>
+              <!-- Edit Button -->
+              <a href="/edit-user/<%= user._id %>" class="btn btn-warning"
+                >Edit</a
+              >
+
+              <!-- Delete Button -->
+              <form
+                action="/delete-user/<%= user._id %>"
+                method="POST"
+                style="display: inline-block"
+              >
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
+      <!-- Logout button -->
+      <a href="/admin-logout" class="btn btn-danger">Logout</a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
